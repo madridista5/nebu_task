@@ -3,5 +3,5 @@ import React from "react";
 import './Header.css';
 
 export const Header = () => (
-    <header>Header</header>
+    <header data-testId="header">Header</header>
 );
