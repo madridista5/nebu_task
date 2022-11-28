@@ -1,9 +1,12 @@
-type listType = 'A' | 'B';
+export enum ListType {
+    A = 'A',
+    B = 'B',
+}
 
 export interface Fruit {
     id: number,
     name: string,
-    list: listType,
+    list: ListType,
 }
 
 export type FruitArr = Fruit[];
