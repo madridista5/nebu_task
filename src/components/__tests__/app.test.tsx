@@ -30,4 +30,14 @@ describe('App Component', () => {
         // Assert
         expect(appComponent).toContainElement(headerComponent);
     });
+
+    test('App Component contains FruitList Component', () => {
+        // Arrange
+        render(<App/>);
+        const appComponent = screen.getByTestId('app');
+        const fruitListComponent = screen.getByTestId('fruit-list-wrapper');
+
+        // Assert
+        expect(appComponent).toContainElement(fruitListComponent);
+    })
 });
