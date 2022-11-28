@@ -1,5 +1,7 @@
 import {cleanup, render} from "@testing-library/react";
 import {App} from "../../App";
+import { Header } from "../Header/Header";
+import {FruitList} from "../FruitList/FruitList";
 
 afterEach(() => {
     cleanup();
