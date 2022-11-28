@@ -1,6 +1,7 @@
 import {cleanup, render, screen} from "@testing-library/react";
 import {FruitList} from "../FruitList/FruitList";
 import {fruitData} from "../../data/fruitData";
+import userEvent from "@testing-library/user-event";
 
 afterEach(() => {
     cleanup();
@@ -42,6 +43,24 @@ describe('Fruit List Component', () => {
             expect(fruitToBuyWrapper).toContainElement(element);
         }
         expect(listAElements).toHaveLength(lengthOfFruitToBuyAtTheBeginning);
+    });
+
+    test('when I click element in list A it is moved to list B', async () => {
+        // Arrange
+        render(<FruitList/>);
+        const listAElements = await screen.findAllByTestId('item-list-A');
+        const listB = screen.getByTestId('list-b');
+
+        // Act
+        for (const element of listAElements) {
+            await userEvent.click(element);
+        }
+
+        // Assert
+        const listBElements = await screen.findAllByTestId('item-list-B');
+        for (const elementB of listBElements) {
+            expect(listB).toContainElement(elementB);
+        }
     });
 
 });
