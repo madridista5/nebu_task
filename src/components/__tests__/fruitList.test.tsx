@@ -63,20 +63,45 @@ describe('Fruit List Component', () => {
     //     }
     // });
 
-    test('when I click element in list A it is no more in list A', async () => {
+    // test('when I click element in list A it is no more in list A', async () => {
+    //     // Arrange
+    //     render(<FruitList/>);
+    //     const listAElements = await screen.findAllByTestId('item-list-A');
+    //     const listA = screen.getByTestId('list-a');
+    //
+    //     // Act
+    //     for (const element of listAElements) {
+    //         await userEvent.click(element);
+    //     }
+    //
+    //     // Assert
+    //     for (const element of listAElements) {
+    //         expect(listA).not.toContainElement(element);
+    //     }
+    // });
+
+    test('When I click element in listB it is moved to listA', async () => {
         // Arrange
         render(<FruitList/>);
         const listAElements = await screen.findAllByTestId('item-list-A');
+        const listB = screen.getByTestId('list-b');
         const listA = screen.getByTestId('list-a');
 
         // Act
-        for (const element of listAElements) {
-            await userEvent.click(element);
+        for (const elementA of listAElements) {
+            await userEvent.click(elementA);
+        }
+        const listBElements = await screen.findAllByTestId('item-list-B');
+
+        for (const elementB of listBElements) {
+            expect(listB).toContainElement(elementB);
+            await userEvent.click(elementB);
         }
 
         // Assert
-        for (const element of listAElements) {
-            expect(listA).not.toContainElement(element);
+        const listAElementsInTheEnd = await screen.findAllByTestId('item-list-A');
+        for (const element of listAElementsInTheEnd) {
+            expect(listA).toContainElement(element);
         }
     });
 
