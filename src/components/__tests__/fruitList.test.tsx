@@ -13,14 +13,20 @@ describe('Fruit List Component', () => {
     });
 
     test('renders h2 element with string: "Fruit I need to buy"', () => {
+        // Arrange
         render(<FruitList/>);
         const h2Element = screen.getByText('Fruit I need to buy');
+
+        // Assert
         expect(h2Element).toBeInTheDocument();
     });
 
     test('renders h2 element with string: "Fruit I have"', () => {
+        // Arrange
         render(<FruitList/>);
         const h2Element = screen.getByText('Fruit I have');
+
+        // Assert
         expect(h2Element).toBeInTheDocument();
     });
 
