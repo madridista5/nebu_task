@@ -80,12 +80,36 @@ describe('Fruit List Component', () => {
     //     }
     // });
 
-    test('When I click element in listB it is moved to listA', async () => {
+    // test('When I click element in listB it is moved to listA', async () => {
+    //     // Arrange
+    //     render(<FruitList/>);
+    //     const listAElements = await screen.findAllByTestId('item-list-A');
+    //     const listB = screen.getByTestId('list-b');
+    //     const listA = screen.getByTestId('list-a');
+    //
+    //     // Act
+    //     for (const elementA of listAElements) {
+    //         await userEvent.click(elementA);
+    //     }
+    //     const listBElements = await screen.findAllByTestId('item-list-B');
+    //
+    //     for (const elementB of listBElements) {
+    //         expect(listB).toContainElement(elementB);
+    //         await userEvent.click(elementB);
+    //     }
+    //
+    //     // Assert
+    //     const listAElementsInTheEnd = await screen.findAllByTestId('item-list-A');
+    //     for (const element of listAElementsInTheEnd) {
+    //         expect(listA).toContainElement(element);
+    //     }
+    // });
+
+    test('When I click element in listB it is no more in listB', async () => {
         // Arrange
         render(<FruitList/>);
         const listAElements = await screen.findAllByTestId('item-list-A');
         const listB = screen.getByTestId('list-b');
-        const listA = screen.getByTestId('list-a');
 
         // Act
         for (const elementA of listAElements) {
@@ -93,15 +117,11 @@ describe('Fruit List Component', () => {
         }
         const listBElements = await screen.findAllByTestId('item-list-B');
 
+        // Assert
         for (const elementB of listBElements) {
             expect(listB).toContainElement(elementB);
             await userEvent.click(elementB);
-        }
-
-        // Assert
-        const listAElementsInTheEnd = await screen.findAllByTestId('item-list-A');
-        for (const element of listAElementsInTheEnd) {
-            expect(listA).toContainElement(element);
+            expect(listB).not.toContainElement(elementB);
         }
     });
 
