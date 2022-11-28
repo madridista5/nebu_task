@@ -45,11 +45,29 @@ describe('Fruit List Component', () => {
         expect(listAElements).toHaveLength(lengthOfFruitToBuyAtTheBeginning);
     });
 
-    test('when I click element in list A it is moved to list B', async () => {
+    // test('when I click element in list A it is moved to list B', async () => {
+    //     // Arrange
+    //     render(<FruitList/>);
+    //     const listAElements = await screen.findAllByTestId('item-list-A');
+    //     const listB = screen.getByTestId('list-b');
+    //
+    //     // Act
+    //     for (const element of listAElements) {
+    //         await userEvent.click(element);
+    //     }
+    //
+    //     // Assert
+    //     const listBElements = await screen.findAllByTestId('item-list-B');
+    //     for (const elementB of listBElements) {
+    //         expect(listB).toContainElement(elementB);
+    //     }
+    // });
+
+    test('when I click element in list A it is no more in list A', async () => {
         // Arrange
         render(<FruitList/>);
         const listAElements = await screen.findAllByTestId('item-list-A');
-        const listB = screen.getByTestId('list-b');
+        const listA = screen.getByTestId('list-a');
 
         // Act
         for (const element of listAElements) {
@@ -57,9 +75,8 @@ describe('Fruit List Component', () => {
         }
 
         // Assert
-        const listBElements = await screen.findAllByTestId('item-list-B');
-        for (const elementB of listBElements) {
-            expect(listB).toContainElement(elementB);
+        for (const element of listAElements) {
+            expect(listA).not.toContainElement(element);
         }
     });
 
