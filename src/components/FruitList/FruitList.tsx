@@ -11,21 +11,39 @@ export const FruitList = () => {
         setFruitList([...fruitData]);
     }, []);
 
+    const handleBtn = (id: number) => {
+        setFruitList(prevArr => {
+            let newArr = prevArr.filter(fruit => fruit.id !== id);
+            const fruitToChange = prevArr.find(fruit => fruit.id === id);
+            if(fruitToChange) {
+                fruitToChange.list = fruitToChange.list === ListType.A ? ListType.B : ListType.A;
+                newArr = [...newArr, fruitToChange];
+            }
+            return newArr;
+        })
+    }
+
     return (
-        <div className="fruit-list" data-testId="fruit-list-wrapper">
+        <div className="fruit-list" data-testid="fruit-list-wrapper">
             <div className="fruit-list__left">
                 <h2>Fruit I need to buy</h2>
-                <div data-testId="list-a">
+                <div data-testid="list-a">
                     {fruitList
                         .filter(fruit => fruit.list === ListType.A)
                         .map(fruit => (
-                            <button key={fruit.id} data-testId="item-list-A">{fruit.name}</button>
+                            <button key={fruit.id} data-testid="item-list-A" onClick={() => handleBtn(fruit.id)}>{fruit.name}</button>
                         ))}
                 </div>
             </div>
             <div className="fruit-list__right">
                 <h2>Fruit I have</h2>
-                <div>list B</div>
+                <div data-testid="list-b">
+                    {fruitList
+                        .filter(fruit => fruit.list === ListType.B)
+                        .map(fruit => (
+                            <button key={fruit.id} data-testid="item-list-B" onClick={() => handleBtn(fruit.id)}>{fruit.name}</button>
+                        ))}
+                </div>
             </div>
         </div>
     );
