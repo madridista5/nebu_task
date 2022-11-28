@@ -39,5 +39,5 @@ describe('App Component', () => {
 
         // Assert
         expect(appComponent).toContainElement(fruitListComponent);
-    })
+    });
 });

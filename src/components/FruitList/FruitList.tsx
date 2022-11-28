@@ -4,6 +4,6 @@ import './FruitList.css';
 
 export const FruitList = () => {
     return (
-        <div>Fruit List</div>
+        <div data-testId="fruit-list-wrapper">Fruit List</div>
     );
 }
