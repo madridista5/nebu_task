@@ -22,4 +22,6 @@ describe('Fruit List Component', () => {
         const h2Element = screen.getByText('Fruit I have');
         expect(h2Element).toBeInTheDocument();
     });
+
+
 });
