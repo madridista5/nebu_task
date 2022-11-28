@@ -1,6 +1,6 @@
-import {cleanup, render} from "@testing-library/react";
+import {cleanup, render, screen} from "@testing-library/react";
 import {App} from "../../App";
-import { Header } from "../Header/Header";
+import {Header} from "../Header/Header";
 import {FruitList} from "../FruitList/FruitList";
 
 afterEach(() => {
@@ -19,5 +19,15 @@ describe('App Component', () => {
 
     test('renders FruitList Component', () => {
         render(<FruitList/>);
+    });
+
+    test('App Component contains Header Component', () => {
+        // Arrange
+        render(<App/>);
+        const appComponent = screen.getByTestId('app');
+        const headerComponent = screen.getByTestId('header');
+
+        // Assert
+        expect(appComponent).toContainElement(headerComponent);
     });
 });
