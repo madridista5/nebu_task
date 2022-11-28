@@ -1,0 +1,30 @@
+.fruit-list {
+    display: flex;
+}
+
+.fruit-list__left,
+.fruit-list__right {
+    flex: 1;
+}
+
+h2 {
+    text-align: center;
+    margin: 2rem;
+}
+
+button {
+    display: block;
+    width: 200px;
+    padding: 10px 0;
+    margin: 10px auto;
+    cursor: pointer;
+    background-color: cadetblue;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
+button:hover {
+    background-color: yellowgreen;
+}
